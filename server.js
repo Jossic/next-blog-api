@@ -31,13 +31,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-if (process.env.NODE_ENV === 'development') {
-	app.use(
-		cors({
-			origin: `${process.env.CLIENT_URL}`,
-		})
-	);
-}
+app.use(
+	cors({
+		origin: `${process.env.CLIENT_URL}`,
+	})
+);
 
 app.use('/api', blogRoutes);
 app.use('/api', authRoutes);

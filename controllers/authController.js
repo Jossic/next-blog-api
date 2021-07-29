@@ -37,7 +37,7 @@ exports.preSignup = (req, res) => {
 
 		sendEmailWithNodemailer(req, res, emailData);
 		res.json({
-			message: `Mail envoyé à l'adresse ${email}. Merci de suivre les instructions sans les 15 minutes`,
+			message: `Mail envoyé à l'adresse ${email}. Merci de suivre les instructions sous les 15 minutes`,
 		});
 	});
 };
@@ -128,11 +128,11 @@ exports.signin = (req, res) => {
 		}
 
 		const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-			expiresIn: '1w',
+			expiresIn: '1m',
 		});
 
 		res.cookie('token', token, {
-			expiresIn: '1w',
+			expiresIn: '1m',
 		});
 		const { _id, username, name, email, role } = user;
 		return res.json({
